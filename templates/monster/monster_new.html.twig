@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% form_theme formMonster
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier un monstre</h2>
+
+{% else %}
+
+	<h2>Ajouter un monstre</h2>
+
+{% endif %}
+
+{{ form_start(formMonster) }}
+
+{{ form_row(formMonster.name, {'attr': {'placeholder': "Nom du mob"
+
+
+}}) }}
+{{ form_row(formMonster.description , {'attr': {'placeholder': "Description du mob"
+
+
+
+}}) }}
+{{ form_row(formMonster.findWhere, {'attr': {'placeholder': "Tu peux le trouver "
+
+
+
+}}) }}
+{{ form_row(formMonster.ressources) }}
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter le mob
+	{% endif %}
+</button>
+
+{% endblock%}

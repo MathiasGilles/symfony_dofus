@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+{% form_theme formRessource
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier une ressource</h2>
+
+{% else %}
+
+	<h2>Ajouter un ressource</h2>
+
+{% endif %}
+
+{{ form_start(formRessource) }}
+
+{{ form_row(formRessource.name, {'attr': {'placeholder': "Nom de la ressource"
+
+
+}}) }}
+{{ form_row(formRessource.description , {'attr': {'placeholder': "Description de la ressource"
+
+
+
+}}) }}
+{{ form_row(formRessource.price, {'attr': {'placeholder': "Prix de la ressource"
+
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter la ressource
+	{% endif %}
+</button>
+
+{% endblock%}

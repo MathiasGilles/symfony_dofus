@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% form_theme formEquipement
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier un equipement</h2>
+
+{% else %}
+
+	<h2>Ajouter un equipement</h2>
+
+{% endif %}
+
+{{ form_start(formEquipement) }}
+
+{{ form_row(formEquipement.name, {'attr': {'placeholder': "Nom de l'équipement "
+
+
+}}) }}
+{{ form_row(formEquipement.price , {'attr': {'placeholder': "Prix de l'équipement "
+
+
+
+}}) }}
+
+{{ form_row(formEquipement.panoplie) }}
+{{ form_row(formEquipement.ressources) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter l'équipement
+	{% endif %}
+</button>
+
+{% endblock%}

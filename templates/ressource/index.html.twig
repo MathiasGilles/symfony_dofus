@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Ressource
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('ressource_new') }}" class="btn btn-primary">New ressource</a>
+	<br/><br/>
+
+	<ul>
+		{% for ressource in ressource %}
+			<li>
+				<h5 id="name">{{ ressource.name }}</h5>
+				<br/>
+				<p>Description :
+					{{ ressource.description }}</p>
+				<p>Price :
+					{{ ressource.price }}
+					kamas</p>
+
+				Drop on :
+				{% for monster in ressource.monsters %}
+
+					<li>
+						{{ monster.name }}
+					</li>
+
+
+				{% endfor %}
+
+				<a href="{{ path('ressource_edit', { id: ressource.id }) }}" class="btn btn-primary">Edit</a>
+				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ ressource.name }}','{{
+																				path('ressource_delete', { id: ressource.id })
+																				}}' )">Supprimer</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

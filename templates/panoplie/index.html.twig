@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block title %}Panoplie
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('panoplie_new') }}" class="btn btn-primary">New panoplie</a>
+	<br/><br/>
+
+	<ul>
+		{% for panoplie in panoplies %}
+			<li>
+				<h5 id="name">{{ panoplie.name }}</h5>
+				<br/>
+				<p>Description :
+					{{ panoplie.description }}</p>
+
+				Items :
+				{% for equipement in panoplie.equipements %}
+
+					<li>
+						{{ equipement.name}}
+					</li>
+
+
+				{% endfor %}
+
+				<a href="{{ path('panoplie_edit', { id: panoplie.id }) }}" class="btn btn-primary">Edit</a>
+				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ panoplie.name }}','{{
+																									path('panoplie_delete', { id: panoplie.id })
+																									}}' )">Supprimer</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+{% block title %}Monster
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('monster_new') }}" class="btn btn-primary">New monster</a>
+	<br/><br/>
+
+	<ul>
+		{% for monster in monster %}
+			<li>
+				<h5 id="name">{{ monster.name }}</h5>
+				<br/>
+				<p>Description :
+					{{ monster.description }}</p>
+				<p>Find him :
+					{{ monster.findWhere }}</p>
+
+				Ressources :
+				{% for ressource in monster.ressources %}
+
+					<li>
+						{{ ressource.name }}
+					</li>
+
+
+				{% endfor %}
+
+				<br>
+				<a href="{{ path('monster_edit', { id: monster.id }) }}" class="btn btn-primary">Edit</a>
+				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ monster.name }}','{{
+																																																																																																																																																						        path('monster_delete', { id: monster.id })
+																																																																																																																																																						      }}' )">Supprimer</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

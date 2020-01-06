@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+{% block title %}Equipement
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('equipement_new') }}" class="btn btn-primary">New equipement</a>
+	<br/><br/>
+
+	<ul>
+		{% for equipement in equipements %}
+			<li>
+				<h5 id="name">{{ equipement.name }}</h5>
+				<br/>
+				<p>Price :
+					{{ equipement.price }}
+					kamas</p>
+				{% if equipement.panoplie %}
+
+					<p>Fait partie de la panoplie :
+						{{ equipement.panoplie.name}}</p>
+
+				{% endif %}
+				Need to craft :
+				{% for ressources in equipement.ressources %}
+					<li>
+						{{ ressources.name}}
+					</li>
+
+				{% endfor %}
+				<a href="{{ path('equipement_edit', { id: equipement.id }) }}" class="btn btn-primary">Edit</a>
+				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ equipement.name }}','{{path('equipement_delete', { id: equipement.id })  }}' )">Supprimer</a>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

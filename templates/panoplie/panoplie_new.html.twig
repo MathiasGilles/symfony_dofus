@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme formPanoplie
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier une panoplie</h2>
+
+{% else %}
+
+	<h2>Ajouter un panoplie</h2>
+
+{% endif %}
+
+{{ form_start(formPanoplie) }}
+
+{{ form_row(formPanoplie.name, {'attr': {'placeholder': "Nom de la panoplie"
+
+
+}}) }}
+{{ form_row(formPanoplie.description , {'attr': {'placeholder': "Description de la panoplie"
+
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter la panoplie
+	{% endif %}
+</button>
+
+{% endblock%}
