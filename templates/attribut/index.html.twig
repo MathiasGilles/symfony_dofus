@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block title %}Caractéristique
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('attribut_new') }}" class="btn btn-primary">New caracteristic</a>
+	<br/><br/>
+
+	<ul>
+		{% for attribut in attribut %}
+			<li>
+				<h5 id="name">{{ attribut.name }}</h5>
+				<br/>
+				<a href="{{ path('attribut_edit', { id: attribut.id }) }}" class="btn btn-primary">Edit</a>
+				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ attribut.name }}','{{path('attribut_delete', { id: attribut.id })  }}' )">Supprimer</a>
+				<br><br>
+			</li>
+		{% endfor %}
+	</ul>
+{% endblock %}

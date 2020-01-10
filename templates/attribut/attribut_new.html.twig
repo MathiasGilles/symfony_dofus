@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme formAttribut
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier une caractéristique</h2>
+
+{% else %}
+
+	<h2>Ajouter une caractéristique</h2>
+
+{% endif %}
+
+{{ form_start(formAttribut) }}
+
+{{ form_row(formAttribut.name, {'attr': {'placeholder': "Nom de le caractéristique "
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter la caractéristique
+	{% endif %}
+</button>
+
+{% endblock%}
