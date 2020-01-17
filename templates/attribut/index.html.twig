@@ -1,22 +1,54 @@
 {% extends 'base.html.twig' %}
-{% block title %}Caractéristique
+{% block title %}Attribut
 {% endblock %}
-{% block
-body %}
+{% block body %}
+	<div>
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex justify-content-between">
+					<h6 class="m-0 font-weight-bold ">Attribut</h6>
+					<a href="{{path('attribut_new')}}" class="d-block btn btn-sm btn-success">
+						+ Create attribut
+					</a>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="example" class="display" style="width:100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
 
-	<br/>
-	<a style="margin-left:10px;" href="{{ path('attribut_new') }}" class="btn btn-primary">New caracteristic</a>
-	<br/><br/>
+								{% for attribut in attribut %}
+									<tr>
+										<th>{{ attribut.name }}</th>
 
-	<ul>
-		{% for attribut in attribut %}
-			<li>
-				<h5 id="name">{{ attribut.name }}</h5>
-				<br/>
-				<a href="{{ path('attribut_edit', { id: attribut.id }) }}" class="btn btn-primary">Edit</a>
-				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ attribut.name }}','{{path('attribut_delete', { id: attribut.id })  }}' )">Supprimer</a>
-				<br><br>
-			</li>
-		{% endfor %}
-	</ul>
-{% endblock %}
+										<td>
+											<a class="d-inline-block" href="{{ path('attribut_edit', { id: attribut.id }) }}">
+												<i class="text-warning fas fa-edit fa-fw"></i>
+											</a>
+
+											<a class="d-inline-block" href="{{path('attribut_delete', { id: attribut.id }) }}">
+												<i class="text-danger fas fa-trash-alt fa-fw"></i>
+											</a>
+										</td>
+									</tr>
+								</td>
+							</tbody>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Name</th>
+						<th>Action</th>
+
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div></div></div>{% endblock %}

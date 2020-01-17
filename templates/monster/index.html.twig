@@ -1,39 +1,70 @@
 {% extends 'base.html.twig' %}
 {% block title %}Monster
 {% endblock %}
-{% block
-body %}
+{% block body %}
+	<div>
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex justify-content-between">
+					<h6 class="m-0 font-weight-bold ">Monster</h6>
+					<a href="{{path('monster_new')}}" class="d-block btn btn-sm btn-success">
+						+ Create monster
+					</a>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="example" class="display" style="width:100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Where is it
+									</th>
+									<th>Ressources</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
 
-	<br/>
-	<a style="margin-left:10px;" href="{{ path('monster_new') }}" class="btn btn-primary">New monster</a>
-	<br/><br/>
+								{% for monster in monster %}
+									<tr>
+										<th>{{ monster.name }}</th>
 
-	<ul>
-		{% for monster in monster %}
-			<li>
-				<h5 id="name">{{ monster.name }}</h5>
-				<br/>
-				<p>Description :
-					{{ monster.description }}</p>
-				<p>Find him :
-					{{ monster.findWhere }}</p>
+										<td>{{ monster.description }}</td>
+										<td>{{ monster.findWhere }}</td>
+										<td>
+											{% for ressource in monster.ressources %}
+												<li>
+													{{ ressource.name}}
+												</li>
+											{% endfor %}
+										</td>
+										<td>
+											<a class="d-inline-block" href="{{ path('monster_edit', { id: monster.id }) }}">
+												<i class="text-warning fas fa-edit fa-fw"></i>
+											</a>
 
-				Ressources :
-				{% for ressource in monster.ressources %}
-
-					<li>
-						{{ ressource.name }}
-					</li>
-
-
-				{% endfor %}
-
-				<br>
-				<a href="{{ path('monster_edit', { id: monster.id }) }}" class="btn btn-primary">Edit</a>
-				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ monster.name }}','{{
-																																																																																																																																																						        path('monster_delete', { id: monster.id })
-																																																																																																																																																						      }}' )">Supprimer</a>
-			</li>
-		{% endfor %}
-	</ul>
-{% endblock %}
+											<a class="d-inline-block" href="{{path('monster_delete', { id: monster.id }) }}">
+												<i class="text-danger fas fa-trash-alt fa-fw"></i>
+											</a>
+										</td>
+									</tr>
+								</td>
+							</tbody>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Where is it
+						</th>
+						<th>Ressources</th>
+						<th>Action</th>
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div></div></div>{% endblock %}

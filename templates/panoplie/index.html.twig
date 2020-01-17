@@ -1,36 +1,66 @@
 {% extends 'base.html.twig' %}
 {% block title %}Panoplie
 {% endblock %}
-{% block
-body %}
+{% block body %}
+	<div>
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex justify-content-between">
+					<h6 class="m-0 font-weight-bold ">Panoplie</h6>
+					<a href="{{path('panoplie_new')}}" class="d-block btn btn-sm btn-success">
+						+ Create panoplie
+					</a>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="example" class="display" style="width:100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Equipements</th>
+									<th>Action</th>
+								</tr>
+							</thead>
+							<tbody>
 
-	<br/>
-	<a style="margin-left:10px;" href="{{ path('panoplie_new') }}" class="btn btn-primary">New panoplie</a>
-	<br/><br/>
+								{% for panoplie in panoplies %}
+									<tr>
+										<th>{{ panoplie.name }}</th>
 
-	<ul>
-		{% for panoplie in panoplies %}
-			<li>
-				<h5 id="name">{{ panoplie.name }}</h5>
-				<br/>
-				<p>Description :
-					{{ panoplie.description }}</p>
+										<td>{{ panoplie.description }}</td>
+										<td>
+											{% for equipement in panoplie.equipements %}
+												<li>
+													{{ panoplie.name}}
+												</li>
+											{% endfor %}
+										</td>
+										<td>
+											<a class="d-inline-block" href="{{ path('panoplie_edit', { id: panoplie.id }) }}">
+												<i class="text-warning fas fa-edit fa-fw"></i>
+											</a>
 
-				Items :
-				{% for equipement in panoplie.equipements %}
+											<a class="d-inline-block" href="{{path('panoplie_delete', { id: panoplie.id }) }}">
+												<i class="text-danger fas fa-trash-alt fa-fw"></i>
+											</a>
+										</td>
+									</tr>
+								</td>
+							</tbody>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Equipements</th>
+						<th>Action</th>
 
-					<li>
-						{{ equipement.name}}
-					</li>
-
-
-				{% endfor %}
-
-				<a href="{{ path('panoplie_edit', { id: panoplie.id }) }}" class="btn btn-primary">Edit</a>
-				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ panoplie.name }}','{{
-																									path('panoplie_delete', { id: panoplie.id })
-																									}}' )">Supprimer</a>
-			</li>
-		{% endfor %}
-	</ul>
-{% endblock %}
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div></div></div>{% endblock %}

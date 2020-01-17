@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
-{% block title %}Ressource
+{% block title %}Race
 {% endblock %}
 {% block body %}
 	<div>
 		<div class="col-lg-12">
 			<div class="card shadow mb-4">
 				<div class="card-header py-3 d-flex justify-content-between">
-					<h6 class="m-0 font-weight-bold ">Ressource</h6>
-					<a href="{{path('ressource_new')}}" class="d-block btn btn-sm btn-success">
-						+ Create ressource
+					<h6 class="m-0 font-weight-bold ">Race</h6>
+					<a href="{{path('race_new')}}" class="d-block btn btn-sm btn-success">
+						+ Create race
 					</a>
 				</div>
 				<div class="card-body">
@@ -18,33 +18,22 @@
 								<tr>
 									<th>Name</th>
 									<th>Description</th>
-									<th>Price</th>
-									<th>Monster</th>
-									<th>Equipements</th>
 									<th>Action</th>
 								</tr>
 							</thead>
 							<tbody>
 
-								{% for ressource in ressource %}
+								{% for race in race %}
 									<tr>
-										<th>{{ ressource.name }}</th>
+										<th>{{ race.name }}</th>
 
-										<td>{{ ressource.description }}</td>
-										<td>{{ ressource.price }}</td>
+										<td>{{ race.description }}</td>
 										<td>
-											{% for monster in ressource.monsters %}
-												<li>
-													{{ monster.name}}
-												</li>
-											{% endfor %}
-										</td>
-										<td>
-											<a class="d-inline-block" href="{{ path('ressource_edit', { id: ressource.id }) }}">
+											<a class="d-inline-block" href="{{ path('race_edit', { id: race.id }) }}">
 												<i class="text-warning fas fa-edit fa-fw"></i>
 											</a>
 
-											<a class="d-inline-block" href="{{path('ressource_delete', { id: ressource.id }) }}">
+											<a class="d-inline-block" href="{{path('race_delete', { id: race.id }) }}">
 												<i class="text-danger fas fa-trash-alt fa-fw"></i>
 											</a>
 										</td>
@@ -58,9 +47,6 @@
 					<tr>
 						<th>Name</th>
 						<th>Description</th>
-						<th>Price</th>
-						<th>Monster</th>
-						<th>Equipements</th>
 						<th>Action</th>
 
 					</tr>

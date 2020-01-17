@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% form_theme formRace
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier une race</h2>
+
+{% else %}
+
+	<h2>Ajouter une race</h2>
+
+{% endif %}
+
+{{ form_start(formRace) }}
+
+{{ form_row(formRace.name, {'attr': {'placeholder': "Nom de la race"
+
+
+}}) }}
+{{ form_row(formRace.description , {'attr': {'placeholder': "Description de la race"
+
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter la race
+	{% endif %}
+</button>
+
+{% endblock%}
