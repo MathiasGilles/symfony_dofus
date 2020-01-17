@@ -6,10 +6,11 @@ use App\Entity\Equipement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use App\Entity\Panoplie;
-use App\Entity\Ressource;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
+use App\Entity\Panoplie;
+use App\Entity\Categorie;
+use App\Entity\Ressource;
 
 class EquipementType extends AbstractType
 {
@@ -18,7 +19,7 @@ class EquipementType extends AbstractType
         $builder
             ->add('name')
             ->add('price')
-            ->add('panoplie', EntityType::class, [
+             ->add('panoplie', EntityType::class, [
                 'choice_label' => 'name',
                 'class' => Panoplie::class,
             ])
@@ -27,6 +28,10 @@ class EquipementType extends AbstractType
                 'class' => Ressource::class,
                 'property_path' => 'ressources',
                 'multiple' => true,
+            ])
+            ->add('categorie', EntityType::class, [
+                'choice_label' => 'name',
+                'class' => Categorie::class,
             ])
         ;
     }

@@ -42,6 +42,11 @@ class Equipement
      */
     private $ressources;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Categorie", inversedBy="equipements")
+     */
+    private $categorie;
+
     public function __construct()
     {
         $this->ressources = new ArrayCollection();
@@ -107,6 +112,18 @@ class Equipement
         if ($this->ressources->contains($ressource)) {
             $this->ressources->removeElement($ressource);
         }
+
+        return $this;
+    }
+
+    public function getCategorie(): ?Categorie
+    {
+        return $this->categorie;
+    }
+
+    public function setCategorie(?Categorie $categorie): self
+    {
+        $this->categorie = $categorie;
 
         return $this;
     }

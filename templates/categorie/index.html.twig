@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block title %}Categorie
+{% endblock %}
+{% block
+body %}
+
+	<br/>
+	<a style="margin-left:10px;" href="{{ path('categorie_new') }}" class="btn btn-primary">New categorie</a>
+	<br/><br/>
+
+	<ul>
+		{% for categorie in categories %}
+
+			{{categorie.name}}
+			<br>
+			<a href="{{ path('categorie_edit', { id: categorie.id }) }}" class="btn btn-primary">Edit</a>
+			<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ categorie.name }}','{{path('categorie_delete', { id: categorie.id })  }}' )">Supprimer</a>
+		</li>
+		<br><br>
+	{% endfor %}
+</ul>{% endblock %}

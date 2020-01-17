@@ -29,6 +29,16 @@ body %}
 					</li>
 
 				{% endfor %}
+				<br>
+				{% if equipement.categorie %}
+
+
+					<p>
+						Fait partie de la catégorie :
+						{{equipement.categorie.name}}
+					</p>
+
+				{% endif %}
 				<a href="{{ path('equipement_edit', { id: equipement.id }) }}" class="btn btn-primary">Edit</a>
 				<a style="color: white;" class="btn btn-primary" onclick="confirmSupr('{{ equipement.name }}','{{path('equipement_delete', { id: equipement.id })  }}' )">Supprimer</a>
 			</li>
