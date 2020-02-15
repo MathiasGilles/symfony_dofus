@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+{% form_theme formSpell
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier un sort</h2>
+
+{% else %}
+
+	<h2>Ajouter un sort</h2>
+
+{% endif %}
+
+{{ form_start(formSpell) }}
+
+{{ form_row(formSpell.name, {'attr': {'placeholder': "Nom du sort"
+
+
+}}) }}
+{{ form_row(formSpell.description , {'attr': {'placeholder': "Description du sort"
+
+
+
+}}) }}
+{{ form_row(formSpell.race, {'attr': {'placeholder': "Appartient a la classe"
+
+
+
+
+
+}}) }}
+{{ form_row(formSpell.elements, {'attr': {'placeholder': "Element du sort"
+
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter le sort
+	{% endif %}
+</button>
+
+{% endblock%}

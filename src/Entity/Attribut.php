@@ -21,6 +21,11 @@ class Attribut
      */
     private $name;
 
+    /**
+     * @ORM\OneToOne(targetEntity="App\Entity\StatsValuePerLvl", mappedBy="attribut", cascade={"persist", "remove"})
+     */
+    private $statsValuePerLvl;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -34,6 +39,23 @@ class Attribut
     public function setName(string $name): self
     {
         $this->name = $name;
+
+        return $this;
+    }
+
+    public function getStatsValuePerLvl(): ?StatsValuePerLvl
+    {
+        return $this->statsValuePerLvl;
+    }
+
+    public function setStatsValuePerLvl(StatsValuePerLvl $statsValuePerLvl): self
+    {
+        $this->statsValuePerLvl = $statsValuePerLvl;
+
+        // set the owning side of the relation if necessary
+        if ($statsValuePerLvl->getAttribut() !== $this) {
+            $statsValuePerLvl->setAttribut($this);
+        }
 
         return $this;
     }

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+{% form_theme formElement
+'bootstrap_4_layout.html.twig' %}
+{% block body%}
+{% if editTitle %}
+
+	<h2>Modifier un élément</h2>
+
+{% else %}
+
+	<h2>Ajouter un élément</h2>
+
+{% endif %}
+
+{{ form_start(formElement) }}
+
+{{ form_row(formElement.name, {'attr': {'placeholder': "Nom de l'élément "
+
+
+}}) }}
+
+
+<button type="submit" class="btn btn-success">
+	{% if editMode %}
+		Enregistrer
+	{% else %}
+		Ajouter l'élément
+	{% endif %}
+</button>
+
+{% endblock%}

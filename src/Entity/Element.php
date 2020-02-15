@@ -7,9 +7,9 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\RaceRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\ElementRepository")
  */
-class Race
+class Element
 {
     /**
      * @ORM\Id()
@@ -24,18 +24,13 @@ class Race
     private $name;
 
     /**
-     * @ORM\Column(type="text")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Spell", inversedBy="elements")
      */
-    private $description;
-
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Spell", mappedBy="race")
-     */
-    private $spells;
+    private $spell;
 
     public function __construct()
     {
-        $this->spells = new ArrayCollection();
+        $this->spell = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -55,31 +50,18 @@ class Race
         return $this;
     }
 
-    public function getDescription(): ?string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description): self
-    {
-        $this->description = $description;
-
-        return $this;
-    }
-
     /**
      * @return Collection|Spell[]
      */
-    public function getSpells(): Collection
+    public function getSpell(): Collection
     {
-        return $this->spells;
+        return $this->spell;
     }
 
     public function addSpell(Spell $spell): self
     {
-        if (!$this->spells->contains($spell)) {
-            $this->spells[] = $spell;
-            $spell->addRace($this);
+        if (!$this->spell->contains($spell)) {
+            $this->spell[] = $spell;
         }
 
         return $this;
@@ -87,9 +69,8 @@ class Race
 
     public function removeSpell(Spell $spell): self
     {
-        if ($this->spells->contains($spell)) {
-            $this->spells->removeElement($spell);
-            $spell->removeRace($this);
+        if ($this->spell->contains($spell)) {
+            $this->spell->removeElement($spell);
         }
 
         return $this;

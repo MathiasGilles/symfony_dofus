@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+{% block title %}Sort
+{% endblock %}
+{% block body %}
+	<div>
+		<div class="col-lg-12">
+			<div class="card shadow mb-4">
+				<div class="card-header py-3 d-flex justify-content-between">
+					<h6 class="m-0 font-weight-bold ">Sort</h6>
+					<a href="{{path('spell_new')}}" class="d-block btn btn-sm btn-success">
+						+ Create spell
+					</a>
+				</div>
+				<div class="card-body">
+					<div class="table-responsive">
+						<table id="example" class="display" style="width:100%">
+							<thead>
+								<tr>
+									<th>Name</th>
+									<th>Description</th>
+									<th>Race</th>
+									<th>Elements</th>
+								</tr>
+							</thead>
+							<tbody>
+
+								{% for spell in spell  %}
+									<tr>
+										<th>{{ spell.name }}</th>
+
+										<td>{{ spell.description }}</td>
+
+										<td>
+											{% for race in spell.race %}
+												<li>
+													{{ race.name}}
+												</li>
+											{% endfor %}
+										</td>
+										<td>
+											{% for element in spell.elements %}
+												<li>
+													{{element.name}}
+												</li>
+											{% endfor %}
+										</td>
+										<td>
+											<a class="d-inline-block" href="{{ path('spell_edit', { id: spell.id }) }}">
+												<i class="text-warning fas fa-edit fa-fw"></i>
+											</a>
+
+											<a class="d-inline-block" href="{{path('spell_delete', { id: spell.id }) }}">
+												<i class="text-danger fas fa-trash-alt fa-fw"></i>
+											</a>
+										</td>
+									</tr>
+								</td>
+							</tbody>
+						</tr>
+					{% endfor %}
+				</tbody>
+				<tfoot>
+					<tr>
+						<th>Name</th>
+						<th>Description</th>
+						<th>Race</th>
+						<th>Elements</th>
+
+					</tr>
+				</tfoot>
+			</table>
+		</div>
+	</div>
+</div></div></div>{% endblock %}
