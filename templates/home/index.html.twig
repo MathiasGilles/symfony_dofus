@@ -1,1 +1,17 @@
 {% extends 'base.html.twig' %} {% block title %}Dofus Wiki{% endblock %}
+
+{% block body %}
+    
+{% if app.user%}
+
+<h1>Hello {{user.username}}</h1>
+<h5>Long time not seeing you</h5>
+
+{% else %}
+
+<h1>Hello there</h1>
+<h5>I invit you to log in or sign in</h5>
+
+{% endif %}
+
+{% endblock %}
