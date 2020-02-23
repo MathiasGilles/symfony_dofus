@@ -41,7 +41,7 @@
 												<i class="text-warning fas fa-edit fa-fw"></i>
 											</a>
 
-											<a class="d-inline-block" href="{{path('panoplie_delete', { id: panoplie.id }) }}">
+											<a class="d-inline-block" onclick="confirmSupr('{{ panoplie.name }}','{{path('panoplie_delete', { id: panoplie.id })  }}')">
 												<i class="text-danger fas fa-trash-alt fa-fw"></i>
 											</a>
 										</td>

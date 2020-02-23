@@ -44,7 +44,7 @@
 												<i class="text-warning fas fa-edit fa-fw"></i>
 											</a>
 
-											<a class="d-inline-block" href="{{path('ressource_delete', { id: ressource.id }) }}">
+											<a class="d-inline-block" onclick="confirmSupr('{{ ressource.name }}','{{path('ressource_delete', { id: ressource.id })  }}' )">
 												<i class="text-danger fas fa-trash-alt fa-fw"></i>
 											</a>
 										</td>

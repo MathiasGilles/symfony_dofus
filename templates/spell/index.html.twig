@@ -49,7 +49,7 @@
 												<i class="text-warning fas fa-edit fa-fw"></i>
 											</a>
 
-											<a class="d-inline-block" href="{{path('spell_delete', { id: spell.id }) }}">
+											<a class="d-inline-block" onclick="confirmSupr('{{ spell.name }}','{{path('spell_delete', { id: spell.id })  }}')">
 												<i class="text-danger fas fa-trash-alt fa-fw"></i>
 											</a>
 										</td>

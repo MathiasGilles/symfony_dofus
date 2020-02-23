@@ -31,7 +31,7 @@
 												<i class="text-warning fas fa-edit fa-fw"></i>
 											</a>
 
-											<a class="d-inline-block" href="{{path('categorie_delete', { id: categorie.id }) }}">
+											<a class="d-inline-block" onclick="confirmSupr('{{ categorie.name }}','{{path('categorie_delete', { id: categorie.id })  }}') ">
 												<i class="text-danger fas fa-trash-alt fa-fw"></i>
 											</a>
 										</td>
