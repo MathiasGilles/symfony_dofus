@@ -34,9 +34,9 @@ class Spell
     private $race;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Element", mappedBy="spell")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Element", inversedBy="spells")
      */
-    private $elements;
+    private $element;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\StatsValuePerLvl", mappedBy="spell")
@@ -46,7 +46,7 @@ class Spell
     public function __construct()
     {
         $this->race = new ArrayCollection();
-        $this->elements = new ArrayCollection();
+        $this->element = new ArrayCollection();
         $this->statsValuePerLvls = new ArrayCollection();
     }
 
@@ -108,15 +108,15 @@ class Spell
     /**
      * @return Collection|Element[]
      */
-    public function getElements(): Collection
+    public function getelement(): Collection
     {
-        return $this->elements;
+        return $this->element;
     }
 
     public function addElement(Element $element): self
     {
-        if (!$this->elements->contains($element)) {
-            $this->elements[] = $element;
+        if (!$this->element->contains($element)) {
+            $this->element[] = $element;
             $element->addSpell($this);
         }
 
@@ -125,8 +125,8 @@ class Spell
 
     public function removeElement(Element $element): self
     {
-        if ($this->elements->contains($element)) {
-            $this->elements->removeElement($element);
+        if ($this->element->contains($element)) {
+            $this->element->removeElement($element);
             $element->removeSpell($this);
         }
 

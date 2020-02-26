@@ -20,21 +20,10 @@
 }}) }}
 {{ form_row(formSpell.description , {'attr': {'placeholder': "Description du sort"
 
-
-
 }}) }}
-{{ form_row(formSpell.race, {'attr': {'placeholder': "Appartient a la classe"
+{{ form_row(formSpell.race)}}
 
-
-
-
-
-}}) }}
-{{ form_row(formSpell.elements, {'attr': {'placeholder': "Element du sort"
-
-
-
-}}) }}
+{{form_row(formSpell.element)}}
 
 
 <button type="submit" class="btn btn-success">

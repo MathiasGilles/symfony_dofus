@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
+use App\Entity\Race;
 use App\Entity\Spell;
+use App\Entity\Element;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\OptionsResolver\OptionsResolver;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use App\Entity\Race;
-use App\Entity\Element;
+use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 
 class SpellType extends AbstractType
@@ -24,12 +24,14 @@ class SpellType extends AbstractType
                 'class' => Race::class,
                 'property_path' => 'race',
                 'multiple' => true,
+                'expanded' => true,
             ])
-            ->add('elements', EntityType::class, [
+            ->add('element', EntityType::class, [
                 'choice_label' => 'name',
                 'class' => Element::class,
-                'property_path' => 'elements',
+                'property_path' => 'element',
                 'multiple' => true,
+                'expanded' => true,
             ])
         ;
     }

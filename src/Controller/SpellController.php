@@ -22,7 +22,7 @@ class SpellController extends AbstractController
     {
         
         $spell = $repo->findAll();
-
+    
         return $this->render('spell/index.html.twig', [
             'spell' => $spell
         ]);
@@ -32,21 +32,26 @@ class SpellController extends AbstractController
      * @Route("/spell/new", name="spell_new")
      * @Route("/spell/edit/{id}", name="spell_edit")
      */
-    public function form(Spell $spell = null , Request $request , ObjectManager $manager)
+    public function form(Spell $spell = null , Request $request , ObjectManager $manager,SpellRepository $repo)
     {
         if(!$spell){
         $spell= new Spell();
         }
 
-        $form= $this->createForm(SpellType::class, $spell  );
+        $spellToDisplay=$repo->findAll();
+
+        $form= $this->createForm(SpellType::class, $spell );
 
         $form->handleRequest($request);
 
         if($form->isSubmitted()){
 
             $manager->persist($spell);
-            $manager->flush(); 
-            return $this->redirectToRoute('spell');
+            $manager->flush();
+            dump($spell);
+            return $this->render('spell/index.html.twig',[
+                'spell' => $spellToDisplay
+            ]);
         }
                     
         return $this->render('spell/spell_new.html.twig',[

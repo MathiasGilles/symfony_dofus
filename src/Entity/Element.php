@@ -24,13 +24,13 @@ class Element
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Spell", inversedBy="elements")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Spell", mappedBy="element")
      */
-    private $spell;
+    private $spells;
 
     public function __construct()
     {
-        $this->spell = new ArrayCollection();
+        $this->spells = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -53,9 +53,9 @@ class Element
     /**
      * @return Collection|Spell[]
      */
-    public function getSpell(): Collection
+    public function getSpells(): Collection
     {
-        return $this->spell;
+        return $this->spells;
     }
 
     public function addSpell(Spell $spell): self

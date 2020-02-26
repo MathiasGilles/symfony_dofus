@@ -13,12 +13,6 @@ class ElementType extends AbstractType
     {
         $builder
             ->add('name')
-            //->add('spell', EntityType::class, [
-            //    'choice_label' => 'name',
-            //    'class' => Spell::class,
-            //    'property_path' => 'spell',
-            //    'multiple' => true,
-            // ])
         ;
     }
 
