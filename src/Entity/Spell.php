@@ -34,14 +34,14 @@ class Spell
     private $race;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Element", inversedBy="spells")
-     */
-    private $element;
-
-    /**
      * @ORM\OneToMany(targetEntity="App\Entity\StatsValuePerLvl", mappedBy="spell")
      */
     private $statsValuePerLvls;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\SpellElementValue", inversedBy="spells")
+     */
+    private $value;
 
     public function __construct()
     {
@@ -106,34 +106,6 @@ class Spell
     }
 
     /**
-     * @return Collection|Element[]
-     */
-    public function getelement(): Collection
-    {
-        return $this->element;
-    }
-
-    public function addElement(Element $element): self
-    {
-        if (!$this->element->contains($element)) {
-            $this->element[] = $element;
-            $element->addSpell($this);
-        }
-
-        return $this;
-    }
-
-    public function removeElement(Element $element): self
-    {
-        if ($this->element->contains($element)) {
-            $this->element->removeElement($element);
-            $element->removeSpell($this);
-        }
-
-        return $this;
-    }
-
-    /**
      * @return Collection|StatsValuePerLvl[]
      */
     public function getStatsValuePerLvls(): Collection
@@ -160,6 +132,18 @@ class Spell
                 $statsValuePerLvl->setSpell(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getValue(): ?SpellElementValue
+    {
+        return $this->value;
+    }
+
+    public function setValue(?SpellElementValue $value): self
+    {
+        $this->value = $value;
 
         return $this;
     }

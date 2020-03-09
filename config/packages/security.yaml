@@ -1,13 +1,25 @@
 security:
     encoders:
         App\Entity\User: 
-            algorithm: bcrypt
+            algorithm: argon2i
+
     providers:
         from_database:
             entity:
                 class: App\Entity\User
                 property: email
         in_database: 
+            entity:
+                class: App\Entity\User
+                property: email
+        in_memory:
+            memory:
+                users:
+                    Admin:
+                        password: fb132fce5
+                        roles: 'ROLE_ADMIN'
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
             entity:
                 class: App\Entity\User
                 property: email
@@ -37,5 +49,6 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
+         - { path: ^/new/, roles: ROLE_ADMIN }
+         - { path: ^/edit/, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }

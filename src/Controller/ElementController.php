@@ -2,15 +2,15 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\HttpFoundation\Request;
-
-use Doctrine\Common\Persistence\ObjectManager;
-
 use App\Entity\Element;
 use App\Form\ElementType;
 use App\Repository\ElementRepository;
+
+use Symfony\Component\HttpFoundation\Request;
+
+use Doctrine\Common\Persistence\ObjectManager;
+use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ElementController extends AbstractController
 {
@@ -28,11 +28,16 @@ class ElementController extends AbstractController
     }
 
     /**
+     * Require ROLE_ADMIN for only this controller method.
      * @Route ("/element/new", name="element_new")
      * @Route("/element/edit/{id}", name="element_edit")
+     * /**
      */
     public function form(Element $element = null , Request $request , ObjectManager $manager)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null ,'You have to be admin');
+
         if(!$element){
         $element= new Element();
         }
@@ -56,12 +61,17 @@ class ElementController extends AbstractController
         ]);
         return $this->render('element/element_new.html.twig');
     }
+    
 
       /**
+     * Require ROLE_ADMIN for only this controller method.
      * @Route("element/delete/{id}", name="element_delete")
      */
     public function delete($id, Request $request, ObjectManager $manager)
     {
+
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null ,'You have to be admin');
+
         $repository = $this->getDoctrine()->getRepository(Element::class);
         $element = $repository->find($id);
 

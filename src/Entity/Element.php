@@ -24,14 +24,9 @@ class Element
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Spell", mappedBy="element")
+     * @ORM\ManyToOne(targetEntity="App\Entity\SpellElementValue", inversedBy="elements")
      */
-    private $spells;
-
-    public function __construct()
-    {
-        $this->spells = new ArrayCollection();
-    }
+    private $value;
 
     public function getId(): ?int
     {
@@ -50,28 +45,14 @@ class Element
         return $this;
     }
 
-    /**
-     * @return Collection|Spell[]
-     */
-    public function getSpells(): Collection
+    public function getValue(): ?SpellElementValue
     {
-        return $this->spells;
+        return $this->value;
     }
 
-    public function addSpell(Spell $spell): self
+    public function setValue(?SpellElementValue $value): self
     {
-        if (!$this->spell->contains($spell)) {
-            $this->spell[] = $spell;
-        }
-
-        return $this;
-    }
-
-    public function removeSpell(Spell $spell): self
-    {
-        if ($this->spell->contains($spell)) {
-            $this->spell->removeElement($spell);
-        }
+        $this->value = $value;
 
         return $this;
     }

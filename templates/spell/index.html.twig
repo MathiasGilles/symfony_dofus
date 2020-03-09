@@ -38,11 +38,7 @@
 											{% endfor %}
 										</td>
 										<td>
-											{% for elements in spell.element %}
-												<li>
-													{{elements.name}}
-												</li>
-											{% endfor %}
+											
 										</td>
 										<td>
 											<a class="d-inline-block" href="{{ path('spell_edit', { id: spell.id }) }}">

@@ -23,7 +23,12 @@
 }}) }}
 {{ form_row(formSpell.race)}}
 
-{{form_row(formSpell.element)}}
+{% for value in formSpell.value %}
+{{ form_row(value.valueMin)}}
+{{ form_row(value.valueMax)}}
+{{ form_row(value.element)}}
+
+{% endfor %}
 
 
 <button type="submit" class="btn btn-success">

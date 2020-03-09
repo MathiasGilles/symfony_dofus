@@ -49,7 +49,7 @@ class SpellController extends AbstractController
             $manager->persist($spell);
             $manager->flush();
             dump($spell);
-            return $this->render('spell/index.html.twig',[
+         return $this->render('spell/index.html.twig',[
                 'spell' => $spellToDisplay
             ]);
         }

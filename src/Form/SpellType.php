@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\Race;
 use App\Entity\Spell;
 use App\Entity\Element;
+use App\Entity\SpellElementValue;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -26,12 +27,9 @@ class SpellType extends AbstractType
                 'multiple' => true,
                 'expanded' => true,
             ])
-            ->add('element', EntityType::class, [
-                'choice_label' => 'name',
-                'class' => Element::class,
-                'property_path' => 'element',
-                'multiple' => true,
-                'expanded' => true,
+            ->add('value',CollectionType::class,[
+            'entry_type' => SpellElementValue::class,
+            'entry_options' => ['label' => false],
             ])
         ;
     }
